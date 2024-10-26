@@ -1,0 +1,74 @@
+<form (ngSubmit)="saveProfile()" [formGroup]="editForm">
+  <fieldset>
+    <h2>Edit Profile</h2>
+    <label for="fname">First Name : </label>
+    <input type="text" id="fname" formControlName="fname" /><br><br>
+    <div *ngIf="editForm.get('fname')?.invalid && (editForm.get('fname')?.dirty || editForm.get('fname')?.touched)"
+      style="color: red;" class="input-content">
+      <span *ngIf="editForm.get('fname')?.errors?.['required']">First name is required.</span>
+      <span *ngIf="editForm.get('fname')?.errors?.['pattern']">Name must be character.</span>
+    </div>
+    <label for="lname">Last Name : </label>
+    <input type="text" id="lname" formControlName="lname" /><br><br>
+    <div *ngIf="editForm.get('lname')?.invalid && (editForm.get('lname')?.dirty || editForm.get('lname')?.touched)"
+      style="color: red;" class="input-content">
+      <span *ngIf="editForm.get('lname')?.errors?.['required']">Last name is required.</span>
+      <span *ngIf="editForm.get('lname')?.errors?.['pattern']">Name must be character.</span>
+    </div>
+    <label for="email">Email ID : </label>
+    <input type="email" id="email" formControlName="email" /><br><br>
+    <div *ngIf="editForm.get('email')?.invalid && (editForm.get('email')?.dirty || editForm.get('email')?.touched)"
+      style="color: red;" class="input-content">
+      <span *ngIf="editForm.get('email')?.errors?.['required']">Email ID is required.</span>
+      <span *ngIf="editForm.get('email')?.errors?.['email']">Email must be in correct format.
+        <div style="color: gray;">Example: abc&#64;gmail.com</div>
+      </span>
+    </div>
+    <label for="phone">Mobile Number : </label>
+    <input type="text" id="phone" formControlName="phone" maxlength="10" /><br><br>
+    <div *ngIf="editForm.get('phone')?.invalid && (editForm.get('phone')?.dirty || editForm.get('phone')?.touched)"
+      style="color: red;" class="input-content">
+      <span *ngIf="editForm.get('phone')?.errors?.['required']">Mobile number is required.</span>
+      <span *ngIf="editForm.get('phone')?.errors?.['pattern']">Mobile number must be in
+        10-digit numbers.</span>
+    </div>
+    <label for="age">Age : </label>
+    <input class="range" type="range" min="20" max="60" (input)="onAgeChange($event)" formControlName="age" />
+    <span>{{ ageValue }}</span><br><br>
+    <select formControlName="state" class="state">
+      <option value="" disabled selected>State</option>
+      <option>Maharashtra</option>
+      <option>Chennai</option>
+      <option>Uttar Pradesh</option>
+      <option>Madhya Pradesh</option>
+      <option>West Bengal</option>
+      <option>Tamil Nadu</option>
+      <option>Karnataka</option>
+    </select>&nbsp;
+    <select formControlName="country" class="country">
+      <option value="" disabled selected>Country</option>
+      <option>India</option>
+      <option>USA</option>
+      <option>China</option>
+    </select><br><br>
+    <label for="address">Address : </label>
+    <input type="text" id="address" formControlName="address" /><br><br>
+    <div
+      *ngIf="editForm.get('address')?.invalid && (editForm.get('address')?.dirty || editForm.get('address')?.touched)"
+      style="color: red;" class="input-content">
+      <span *ngIf="editForm.get('address')?.errors?.['required']">Address is required.</span>
+    </div>
+
+    <label for="tags">Tags : </label>
+    <input type="text" id="tags" #tagInput placeholder="tags"
+      (keydown.enter)="newTag = tagInput.value; addTag(); tagInput.value=''; $event.preventDefault();" /><br><br>
+    <div class="tags">
+      <span *ngFor="let tag of tagsArray.controls; let i = index" class="tag bg-dark text-light mx-1">
+        {{ tag.value }}&nbsp;
+        <span class="remove-tag bg-dark text-light" (click)="removeTag(i)">&times;</span>
+      </span>
+    </div><br>
+
+    <button type="submit" class="savebtn" [disabled]="editForm.invalid">Save</button>
+  </fieldset>
+</form>

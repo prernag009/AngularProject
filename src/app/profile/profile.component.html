@@ -1,0 +1,47 @@
+<header class="headlink">
+  <div class="container">
+    <div class="logo">DEMO APP</div>
+    <nav class="links">
+      <a (click)="goToHomePage()">HOME</a>
+      <a href="#">ABOUT US</a>
+      <a href="#">JOBS</a>
+      <a href="#">CLIENTS</a>
+      <a href="#">EMPLOYERS</a>
+      <a href="#">CONTACT US</a>
+    </nav>
+  </div>
+</header>
+<section class="profiledetails" *ngIf="userData">
+  <h2 class="title">Profile</h2>
+  <div class="profilecontainer">
+    <div class="profiledata">
+      <div class="img-container" *ngIf="userData.image">
+        <img [src]="userData.image" class="image-size">
+      </div>
+      <div class="edits">
+        <button class="editbtn" (click)="triggerFileInput()">Edit Photo</button>
+        <input type="file" id="fileInput" accept="image/*" (change)="onFileSelected($event)" style="display: none;">
+        <button class="editbtn" (click)="editProfile(userData.id)">Edit Profile</button>
+        <div *ngIf="imageError" style="color: red;">{{imageError}}</div><br>
+      </div>
+    </div>
+    <div class="paracontent">
+      <p>I'm <span>{{userData.fname}}</span><span> {{userData.lname}}</span> and I'm above
+        <span>{{userData.age}}</span> years and you can send your emails to
+        <a href="mailto:{{userData.email}}">{{userData.email}}</a>. I live in the state of
+        <span>{{userData.state}}</span>.
+        I like to play <span>{{userData.tags.join(', ')}}</span>. And please send me newsletters.
+        Please reach out to me on my phone number is {{userData.phone}}.
+      </p>
+
+
+      <button class="agreebtn" type="button">I Agree</button>
+    </div>
+  </div>
+</section>
+
+<footer class="sub">
+  <h4>Subscribe to our Job Seeker Mailing List</h4>
+  <input type="email" placeholder="Enter Your Email Address" class="em">
+  <button class="envbtn"><i class="fas fa-envelope"></i></button>
+</footer>

@@ -1,0 +1,56 @@
+<header class="headlink">
+    <div class="container">
+        <div class="logo">DEMO APP</div>
+        <nav class="links">
+            <a href="#">HOME</a>
+            <a href="#">ABOUT US</a>
+            <a href="#">JOBS</a>
+            <a href="#">CLIENTS</a>
+            <a href="#">EMPLOYERS</a>
+            <a href="#">CONTACT US</a>
+        </nav>
+    </div>
+    <section class="details">
+        <div class="content">
+            <h1><i>I'm looking for..</i></h1>
+            <div class="description">
+                <input type="text" placeholder="Enter a Job Description" class="jd">
+                <button class="searchbtn"><i class="fas fa-search"></i> Search</button>
+            </div>
+            <div class="loc">
+                <label class="check">
+                    <input type="checkbox">Full Time
+                </label>
+                <label>
+                    <input type="checkbox">Part Time/ Casual/ Experience
+                </label>
+                <select class="sel">
+                    <option>Select Your Location</option>
+                    <option>Sion</option>
+                    <option>Dadar</option>
+                    <option>Andheri</option>
+                    <option>Bandra</option>
+                    <option>Lower Parel</option>
+                    <option>Thane</option>
+                </select>
+            </div>
+            <div>
+                <button (click)="userRegistrationModal.openModal()" class="regbtn">Register</button>
+                <app-user-registration #userRegistrationModal></app-user-registration>
+            </div>
+        </div>
+    </section>
+</header>
+<section class="details-info">
+    <h2><i>We're leaders in</i></h2>
+    <h1>Creative Digital Recruitment</h1>
+    <p class="para">Based in Surry Hills, the creative hub of Sydney we are surrounded by creativity <br> and that
+        reflects on the type of
+        jobs we recruit for.</p>
+    <button class="findbtn">FIND OUT MORE ABOUT US!</button>
+</section>
+<footer class="sub">
+    <h4>Subscribe to our Job Seeker Mailing List</h4>
+    <input type="email" placeholder="Enter Your Email Address" class="em">
+    <button class="envbtn"><i class="fas fa-envelope"></i></button>
+</footer>

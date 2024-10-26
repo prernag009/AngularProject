@@ -1,0 +1,119 @@
+<div class="modal-overlay" *ngIf="isOpen">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="reglogo">
+                <h2 class="logo">Register</h2>
+                <button type="button" class="close" (click)="closeModal()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="onSubmit()" [formGroup]="regForm">
+                    <div class="formcontainer">
+                        <div class="img-container">
+                            <img [src]="imageSrc" alt="Uploaded Image" class="image-size"
+                                *ngIf="imageSrc; else placeholder"><br>
+                            <ng-template #placeholder>
+                                <img src="https://placehold.co/150x150" alt="Placeholder Image" class="image-size">
+                            </ng-template>
+                            <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*"
+                                style="display: none;">
+                            <a href="#" (click)="triggerFileInput($event)">Upload Your Image</a><br>
+                            <div *ngIf="imageError" style="color: red;">{{imageError}}</div>
+                        </div>
+                        <div class="formcontent">
+                            <div class="name-content">
+                                <div class="input-content">
+                                    <input type="text" formControlName="fname" placeholder="First Name" />
+                                    <div *ngIf="regForm.get('fname')?.invalid && (regForm.get('fname')?.dirty || regForm.get('fname')?.touched)"
+                                        style="color: red;">
+                                        <span *ngIf="regForm.get('fname')?.errors?.['required']">First Name is
+                                            required.</span>
+                                        <span *ngIf="regForm.get('fname')?.errors?.['pattern']">Name must be
+                                            character.</span>
+                                    </div>
+                                </div>
+                                <div class="input-content">
+                                    <input type="text" formControlName="lname" placeholder="Last Name" />
+                                    <div *ngIf="regForm.get('lname')?.invalid && (regForm.get('lname')?.dirty || regForm.get('lname')?.touched)"
+                                        style="color: red;">
+                                        <span *ngIf="regForm.get('lname')?.errors?.['required']">Last Name is
+                                            required.</span>
+                                        <span *ngIf="regForm.get('lname')?.errors?.['pattern']">Name must be
+                                            character.</span>
+                                    </div>
+                                </div>
+                            </div><br>
+                            <input type="email" formControlName="email" placeholder="Email" class="sizebox" />
+                            <div *ngIf="regForm.get('email')?.invalid && (regForm.get('email')?.dirty || regForm.get('email')?.touched)"
+                                style="color: red;">
+                                <span *ngIf="regForm.get('email')?.errors?.['required']">Email ID is required.</span>
+                                <span *ngIf="regForm.get('email')?.errors?.['email']">Email must be in correct format.
+                                    <div style="color: gray;">Example: abc&#64;gmail.com</div>
+                                </span>
+                            </div><br><br>
+                            <input type="text" formControlName="phone" placeholder="Mobile Number" maxlength="10"
+                                class="sizebox" />
+                            <div *ngIf="regForm.get('phone')?.invalid && (regForm.get('phone')?.dirty || regForm.get('phone')?.touched)"
+                                style="color: red;">
+                                <span *ngIf="regForm.get('phone')?.errors?.['required']">Mobile number is
+                                    required.</span>
+                                <span *ngIf="regForm.get('phone')?.errors?.['pattern']">Mobile number must be in
+                                    10-digit numbers.</span>
+                            </div><br><br>
+                            <label for="age">Age </label>
+                            <input id="age" formControlName="age" type="range" min="20" max="60"
+                                (input)="onAgeChange($event)" />
+                            <span>{{ ageValue }}</span><br><br>
+                            <select formControlName="state" class="state-size">
+                                <option value="" disabled selected>State</option>
+                                <option>Maharashtra</option>
+                                <option>Chennai</option>
+                                <option>Uttar Pradesh</option>
+                                <option>Madhya Pradesh</option>
+                                <option>West Bengal</option>
+                                <option>Tamil Nadu</option>
+                                <option>Karnataka</option>
+                            </select>
+                            <div *ngIf="regForm.get('state')?.invalid && (regForm.get('state')?.dirty || regForm.get('state')?.touched)"
+                                style="color: red;">
+                                State is required.
+                            </div><br><br>
+                            <select formControlName="country" class="country-size">
+                                <option value="" disabled selected>Country</option>
+                                <option>India</option>
+                                <option>USA</option>
+                                <option>China</option>
+                            </select>
+                            <div *ngIf="regForm.get('country')?.invalid && (regForm.get('country')?.dirty || regForm.get('country')?.touched)"
+                                style="color: red;">
+                                Country is required.
+                            </div><br><br>
+                            <input type="text" formControlName="address" placeholder="Address" class="sizebox" />
+                            <div *ngIf="regForm.get('address')?.invalid && (regForm.get('address')?.dirty || regForm.get('address')?.touched)"
+                                style="color: red;">
+                                Address is required.
+                            </div><br><br>
+                            <input type="text" #tagInput placeholder="tags" class="sizebox"
+                                (keydown)="onEnterTag($event, tagInput)" />
+                            <div class="tags">
+                                <span *ngFor="let tag of tagsArray.controls; let i = index"
+                                    class="tag bg-dark text-light mx-1">
+                                    {{ tag.value }}&nbsp;
+                                    <span class="remove-tag bg-dark text-light" (click)="removeTag(i)">&times;</span>
+                                </span>
+                            </div>
+                            <label>
+                                <input type="checkbox" />
+                                <span>Subscribe to newsletter</span>
+                            </label><br><br>
+                            <button type="reset" class="resetbtn">Cancel</button>
+                            <button type="submit" [disabled]="regForm.invalid" class="submitbtn">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

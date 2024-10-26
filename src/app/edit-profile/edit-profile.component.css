@@ -1,0 +1,99 @@
+form {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    background-color: dodgerblue;
+    width: 100%;
+    height: 100%;
+    padding: 30px 0px;
+
+}
+
+fieldset {
+    background-color: white;
+    width: 500px;
+    height: fit-content;
+}
+
+h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+input {
+    float: right;
+    margin-right: 50px;
+    padding: 5px 30px 5px 10px;
+}
+
+.range {
+    float: none;
+    margin-left: 160px;
+    margin-right: 10px;
+}
+
+label {
+    font-size: 18px;
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+.state {
+    padding: 5px 25px 5px 0px;
+    margin-left: 30px;
+    font-size: 16px;
+}
+
+.country {
+    padding: 5px 130px 5px 0px;
+    margin-left: 30px;
+    font-size: 16px;
+}
+
+.tags {
+    cursor: pointer;
+    margin-left: 240px;
+}
+
+.input-content{
+    margin-left: 240px;
+}
+
+.savebtn {
+    margin: 20px 0px 20px 200px;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: dodgerblue;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    fieldset {
+        width: 90%; 
+        margin: 0 auto; 
+    }
+
+    input {
+        float: none; 
+        margin-right: 0; 
+        width: calc(100% - 20px);
+        padding: 10px; 
+        margin-bottom: 15px; 
+    }
+
+    .tags,
+    .input-content {
+        margin-left: 0;
+        text-align: center; 
+    }
+
+    .savebtn {
+        margin: 20px auto; 
+        display: block; 
+        width: 80%;
+    }
+}
